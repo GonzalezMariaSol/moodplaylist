@@ -1,0 +1,15 @@
+# Compiled Python files
+__pycache__/
+*.pyc
+
+# Virtual environment (in case i add one in the future)
+venv/
+.venv/
+env/
+
+# Editor configuration
+.vscode/
+
+# Operating system
+.DS_Store
+Thumbs.db
