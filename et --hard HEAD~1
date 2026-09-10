@@ -1,0 +1,29 @@
+[33mcommit 078c30366928935e72b76cd0b537ab199550b017[m[33m ([m[1;36mHEAD -> [m[1;32min-progress[m[33m, [m[1;31morigin/in-progress[m[33m)[m
+Author: MariaSolGonzalez <mariasolgonzalez240@hotmail.com>
+Date:   Thu Sep 10 11:14:01 2026 -0500
+
+    creation of choose_mood() with input validation using while loop
+
+[33mcommit 25beb0f99df427baf8faa5cc7cac25b6286d959f[m
+Author: MariaSolGonzalez <mariasolgonzalez240@hotmail.com>
+Date:   Wed Sep 9 16:45:36 2026 -0500
+
+    added comments to song functions for personal better understanding and test basic flow
+
+[33mcommit db24ecfa4628ff4c444ea0f3c898877dc4c688f3[m
+Author: MariaSolGonzalez <mariasolgonzalez240@hotmail.com>
+Date:   Wed Sep 9 14:49:34 2026 -0500
+
+    Add add_song() function to append new songs to the list
+
+[33mcommit 7b4843686165a79579e51d46346e03a76ca74878[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: MariaSolGonzalez <mariasolgonzalez240@hotmail.com>
+Date:   Wed Sep 9 14:21:50 2026 -0500
+
+    Add save_songs() function and test song count display
+
+[33mcommit 261def69c1321a7b5824a3cdbb919d1c6aa9af2b[m
+Author: MariaSolGonzalez <mariasolgonzalez240@hotmail.com>
+Date:   Wed Sep 9 11:20:34 2026 -0500
+
+    Initial setup + load_songs() with missing file handling
