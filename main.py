@@ -48,3 +48,16 @@ my_list = [
 add_song(my_list)  # > agrega la canción nueva a la lista en memoria
 print(my_list)
 save_songs(my_list, "songs.csv")
+
+
+MOODS = ["Happy", "Sad", "Emotional", "Chill", "Party", "Workout"]
+
+def choose_mood () :
+    for i, mood in enumerate(MOODS, start=1):
+        print(f"{i}. {mood}")
+    user_mood = input("Choose numer of the mood:")
+    while int(user_mood) < 1 or int(user_mood) > len(MOODS) or user_mood == str :
+        print("Please write a number that belongs to a mood")
+        user_mood = input("Choose numer of the mood:")
+
+choose_mood()
