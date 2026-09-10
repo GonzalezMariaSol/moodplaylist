@@ -53,24 +53,25 @@ save_songs(my_list, "songs.csv")
 
 MOODS = ["Happy", "Sad", "Emotional", "Chill", "Party", "Workout"]
 
-def choose_mood () :
-    for i, mood in enumerate(MOODS, start=1): 
+def choose_mood () : 
+    for i, mood in enumerate(MOODS, start=1): # ~ for each position and value in MOODS (starting position in 1)
         print(f"{i}. {mood}")
+        prompt_message = "Choose a number of the mood: " # ~ The question that we gonna ask at first to users
 
-    while True:
-        user_mood = input("Choose number of the mood: ")
+    while True: # ~ do an infinite loop that
+        user_mood = input(prompt_message) # ~ ask users to chose a number
         try:
-            number_mood = int(user_mood)
-        except ValueError:
-            print("Please enter a valid number: ")
-            continue
+            number_mood = int(user_mood) # ~ try to save users answer as a number
+        except ValueError: # ~ unless that the answer is anything but a number
+            prompt_message = "Please enter a number, not text: "  # ~ update the message for next loop
+            continue # ~ we ask again
 
-        if number_mood < 1 or number_mood > len(MOODS):
-            print("Please choose the number from the mood list: ")
-            continue
+        if number_mood < 1 or number_mood > len(MOODS): # ~ if the number doesnt fit between 1 to 6
+            prompt_message = "Please choose a number between 1 and 6: "  # ~ update the message for next loop
+            continue # ~ we ask again 
 
-        break
+        break # ~we cut the loop once we have a valid answer (a int from 1 to 6)
 
-    return MOODS[number_mood - 1]
+    return MOODS[number_mood - 1] # ~ our function will return the mood that is under that number (the number has a -1 for position purposes)
 
 print(choose_mood())
