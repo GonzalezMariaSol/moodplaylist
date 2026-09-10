@@ -54,7 +54,7 @@ save_songs(my_list, "songs.csv")
 MOODS = ["Happy", "Sad", "Emotional", "Chill", "Party", "Workout"]
 
 def choose_mood () :
-    for i, mood in enumerate(MOODS, start=1):
+    for i, mood in enumerate(MOODS, start=1): 
         print(f"{i}. {mood}")
 
     while True:
@@ -62,8 +62,15 @@ def choose_mood () :
         try:
             number_mood = int(user_mood)
         except ValueError:
-            print("Please enter a valid number")
+            print("Please enter a valid number: ")
             continue
-choose_mood()
 
+        if number_mood < 1 or number_mood > len(MOODS):
+            print("Please choose the number from the mood list: ")
+            continue
 
+        break
+
+    return MOODS[number_mood - 1]
+
+print(choose_mood())
