@@ -2,9 +2,24 @@ import csv
 
 MOODS = ["Happy", "Sad", "Emotional", "Chill", "Party", "Workout"]
 
+
+def show_menu (songs_list):
+    print("Welcome to MoodPlaylist 🎵")
+    print("---------------------------")
+    if len(songs_list) > 0:
+        print("1. Add song")
+        print("2. Generate playlist")
+        print("3. View songs")
+        print("4. Exit")
+    else:
+        print("1. Add song")
+        print("2. Exit")
+
+
+
 # $ This function open and read a CSV file, and turn each row into a dict and adds it to a list (empty or with data)
 
-def load_songs(file_name): #~ load_songs waits for a CSV file name
+def load_songs (file_name): #~ load_songs waits for a CSV file name
     songs = []
     try: #~once have the file name, will try to open it in reading mode and call it file
         with open(file_name, mode="r") as file: 
@@ -19,7 +34,7 @@ def load_songs(file_name): #~ load_songs waits for a CSV file name
 
 # $ This function will add existing songs in the list to the csv file
 
-def save_songs(list_of_songs, file_name): # ~ save songs will need the list of songs that already exist and the file CSV where we gonna be pushing it 
+def save_songs (list_of_songs, file_name): # ~ save songs will need the list of songs that already exist and the file CSV where we gonna be pushing it 
     fields = ["name", "artist", "mood"] # ~ we set that the headers of each column will be the ones inside this variable called fields
     with open(file_name, mode="w") as file: # ~ we open the file CSV as writing mode (bc we will be OVERWRITING songs to it), and we call it file
         writer = csv.DictWriter(file, fieldnames=fields) # ~ writer will save the file and tell it which column to expect from fields
@@ -31,7 +46,7 @@ def save_songs(list_of_songs, file_name): # ~ save songs will need the list of s
 
 # $ This function collects the info from user to add a song to the csv file
 
-def add_song(songs_list):
+def add_song (songs_list):
     song_name = input("Write Song Name:")
     song_artist = input("Write Song Artist:")
     song_mood = choose_mood()
@@ -68,7 +83,7 @@ def choose_mood () :
 
 # $ This function will go thru the song list, and will show it in a better format for user readability
 
-def view_songs(songs_list):
+def view_songs (songs_list):
     for i, song in enumerate(songs_list, start=1): # ~ will go thru the list of songs, starting from the n1
         print(f"{i}. {song['name']} - {song['artist']} ({song['mood']})") # ~ and "re shape it" for a better readability for the user 
 
@@ -76,7 +91,7 @@ def view_songs(songs_list):
 
 # $ This function will generate a playlist based on the users mood
 
-def generate_playlist(songs_list):
+def generate_playlist (songs_list):
     mood_user_input = choose_mood() # ~ we reuse the funcion choose_mood to ask again which mood wants to choose and get a right answer without mistakes
     songs_mood = []
     for song in songs_list: 
@@ -93,4 +108,4 @@ add_song(list_of_songs) #! D
 save_songs(list_of_songs, "songs.csv") #! D
 view_songs(list_of_songs) #! D
 generate_playlist(list_of_songs) #! D
-
+show_menu(list_of_songs)
