@@ -66,10 +66,18 @@ def choose_mood () :
 
 
 
+# $ This function will go thru the song list, and will show it in a better format for user readability
+
+def view_songs(songs_list):
+    for i, song in enumerate(songs_list, start=1): # ~ will go thru the list of songs, starting from the n1
+        print(f"{i}. {song['name']} - {song['artist']} ({song['mood']})") # ~ and "re shape it" for a better readability for the user 
+
+
+
 list_of_songs = load_songs("songs.csv") #~create a variable of list of songs that will save the dictionary created in it
 print(f"You have {len(list_of_songs)} songs saved")
 
 add_song(list_of_songs) #! D
-print(list_of_songs) #! D
 save_songs(list_of_songs, "songs.csv") #! D
+view_songs(list_of_songs) #! D
 
