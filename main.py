@@ -35,7 +35,7 @@ def save_songs(song_list, file_name): # ~ save songs will need the list of songs
 def add_song(songs_list): # ~ the functions is waiting for a list of songs where we gonna save new ones too
     song_name = input("Write Song Name:") # ~ we ask the user some info
     song_artist = input("Write Song Artist:")
-    song_mood = input("Write Song Mood:")
+    song_mood = choose_mood() 
     new_song = {"name": song_name, "artist": song_artist, "mood": song_mood} # ~ we create our dict for A song
     songs_list.append(new_song) # ~ we add that new song to our existing list
 
@@ -56,7 +56,7 @@ MOODS = ["Happy", "Sad", "Emotional", "Chill", "Party", "Workout"]
 def choose_mood () : 
     for i, mood in enumerate(MOODS, start=1): # ~ for each position and value in MOODS (starting position in 1)
         print(f"{i}. {mood}")
-        prompt_message = "Choose a number of the mood: " # ~ The question that we gonna ask at first to users
+    prompt_message = "Choose a number for the song mood: " # ~ The question that we gonna ask at first to users
 
     while True: # ~ do an infinite loop that
         user_mood = input(prompt_message) # ~ ask users to chose a number
