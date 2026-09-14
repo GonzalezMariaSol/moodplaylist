@@ -53,7 +53,7 @@ def choose_mood () :
         try:
             number_mood = int(user_mood) # ~ try to save users answer as a number
         except ValueError: # ~ unless that the answer is anything but a number
-            prompt_message = "Please enter a number, not text: "  # ~ update the message for next loop
+            prompt_message = "Please enter a number, not a text: "  # ~ update the message for next loop
             continue # ~ we ask again
 
         if number_mood < 1 or number_mood > len(MOODS): # ~ if the number doesnt fit between 1 to 6
@@ -74,10 +74,23 @@ def view_songs(songs_list):
 
 
 
+# $ This function will generate a playlist based on the users mood
+
+def generate_playlist(songs_list):
+    mood_user_input = choose_mood() # ~ we reuse the funcion choose_mood to ask again which mood wants to choose and get a right answer without mistakes
+    songs_mood = []
+    for song in songs_list: 
+        if song["mood"] == mood_user_input: # ~ if the song mood is same as the mood that the user choosed
+            songs_mood.append(song) # ~ we add it to the list of songs that are the same mood
+            print(f"{song['name']} - {song['artist']}") # ~ and we show to the user the songs that belong the same mood, mood that it chose
+
+
+
 list_of_songs = load_songs("songs.csv") #~create a variable of list of songs that will save the dictionary created in it
 print(f"You have {len(list_of_songs)} songs saved")
 
 add_song(list_of_songs) #! D
 save_songs(list_of_songs, "songs.csv") #! D
 view_songs(list_of_songs) #! D
+generate_playlist(list_of_songs) #! D
 
