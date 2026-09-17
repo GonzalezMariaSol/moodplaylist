@@ -8,7 +8,7 @@ MOODS = ["Happy", "Sad", "Emotional", "Chill", "Party", "Workout"]
 def show_menu(songs_list):
     print("\n Welcome to MoodPlaylist 🎵")
     print("---------------------------")
-    if len(songs_list) > 0:
+    if len(songs_list) > 0
         options = ["Add song", "Generate playlist", "View songs", "Exit"]
     else:
         options = ["Add song", "Exit"]
@@ -28,9 +28,9 @@ def load_songs (file_name):
         with open(file_name, mode="r") as file: 
             reader = csv.DictReader(file) 
             for row in reader: 
-                songs.append(row)   
+                songs.append(row)  
     except FileNotFoundError: 
-        pass
+        pass 
     return songs 
 
 
@@ -40,10 +40,10 @@ def load_songs (file_name):
 def save_songs (list_of_songs, file_name):  
     fields = ["name", "artist", "mood"] 
     with open(file_name, mode="w") as file: 
-        writer = csv.DictWriter(file, fieldnames=fields) 
+        writer = csv.DictWriter(file, fieldnames=fields)
         writer.writeheader() 
         for song in list_of_songs: 
-            writer.writerow(song)
+            writer.writerow(song) 
 
 
 
@@ -61,8 +61,8 @@ def add_song (songs_list):
 # $ This function only evaluate if the user answer is valid or not 
 
 def get_valid_number(max_value, prompt_message):
-    while True: 
-        user_input = input(prompt_message)
+    while True:
+        user_input = input(prompt_message) 
         try:
             number = int(user_input) 
         except ValueError:
@@ -83,7 +83,7 @@ def choose_mood():
     for i, mood in enumerate(MOODS, start=1): 
         print(f"{i}. {mood}")
     
-    number_mood = get_valid_number(len(MOODS), "\n Choose a mood for your song: ") 
+    number_mood = get_valid_number(len(MOODS), "\n Choose a mood for your song: ")  
     return MOODS[number_mood - 1] 
 
 
