@@ -16,34 +16,34 @@ def show_menu(songs_list):
     for i, option in enumerate(options, start=1):
         print(f"{i}. {option}")
 
-    return options  # ~return the options/menu based on how many or if any songs are in the list
+    return options  
 
 
 
 # $ This function open and read a CSV file, and turn each row into a dict and adds it to a list (empty or with data)
 
-def load_songs (file_name): #~ load_songs waits for a CSV file name
+def load_songs (file_name): 
     songs = []
-    try: #~once have the file name, will try to open it in reading mode and call it file
+    try: 
         with open(file_name, mode="r") as file: 
-            reader = csv.DictReader(file) #~ reader is an iterator that will yield each row as a DICT when we loop through it
+            reader = csv.DictReader(file) 
             for row in reader: 
-                songs.append(row)   #~ we will push that row into the list songs
-    except FileNotFoundError: #~and if the file doesn't exist
-        pass #~i just keep it as it is
-    return songs #~after all this, i will return the list songs (empty or with songs but will return it)
+                songs.append(row)   
+    except FileNotFoundError: 
+        pass
+    return songs 
 
 
 
 # $ This function will add existing songs in the list to the csv file
 
-def save_songs (list_of_songs, file_name): # ~ save songs will need the list of songs that already exist and the file CSV where we gonna be pushing it 
-    fields = ["name", "artist", "mood"] # ~ we set that the headers of each column will be the ones inside this variable called fields
-    with open(file_name, mode="w") as file: # ~ we open the file CSV as writing mode (bc we will be OVERWRITING songs to it), and we call it file
-        writer = csv.DictWriter(file, fieldnames=fields) # ~ writer will save the file and tell it which column to expect from fields
-        writer.writeheader() # ~ here we are like putting headers at the top of an Excel table
-        for song in list_of_songs: # ~ for each song that exist in list_of_songs
-            writer.writerow(song) # ~ in the file saved in writer, we gonna add a row with the song that we are currently on
+def save_songs (list_of_songs, file_name):  
+    fields = ["name", "artist", "mood"] 
+    with open(file_name, mode="w") as file: 
+        writer = csv.DictWriter(file, fieldnames=fields) 
+        writer.writeheader() 
+        for song in list_of_songs: 
+            writer.writerow(song)
 
 
 
@@ -61,19 +61,18 @@ def add_song (songs_list):
 # $ This function only evaluate if the user answer is valid or not 
 
 def get_valid_number(max_value, prompt_message):
-    while True: # ~ We start a indless loop (will be repeating forever unless we stop it using a return/break)
-        user_input = input(prompt_message) # ~ we store user answer
+    while True: 
+        user_input = input(prompt_message)
         try:
-            number = int(user_input) # ~ we try to turn that answer into a number (if the user decide to type a "hello" will fall into the except)
+            number = int(user_input) 
         except ValueError:
-            prompt_message = "\n Please enter a number, not text: " # ~ show error msge
-            continue # ~ and start all over from the user_input ⟳
-        # ~ once the user actually place a valid answer
-        if number < 1 or number > max_value: # ~ if the anser if lower than 1 or greater than max_value (max_value is basically the moods list length)
-            prompt_message = f"\n Please choose a number between 1 and {max_value}: " # ~ show error msge
-            continue # ~ and start all over from user_input ⟳
+            prompt_message = "\n Please enter a number, not text: " 
+            continue 
+        if number < 1 or number > max_value: 
+            prompt_message = f"\n Please choose a number between 1 and {max_value}: " 
+            continue 
 
-        return number  # ~when the user place a valid answer will finish the loop, returning the number that it placed
+        return number  
 
 
 
@@ -81,19 +80,19 @@ def get_valid_number(max_value, prompt_message):
 
 def choose_mood():
     print("\n SONG MOOD:")
-    for i, mood in enumerate(MOODS, start=1): # ~ for each position and mood in moods, starting from position 1
+    for i, mood in enumerate(MOODS, start=1): 
         print(f"{i}. {mood}")
     
-    number_mood = get_valid_number(len(MOODS), "\n Choose a mood for your song: ") # ~ we save number chosen from user 
-    return MOODS[number_mood - 1] # ~ and we return the mood that belongs to that number (we use - 1 for positions purposes)
+    number_mood = get_valid_number(len(MOODS), "\n Choose a mood for your song: ") 
+    return MOODS[number_mood - 1] 
 
 
 
 # $ This function will go thru the song list, and will show it in a better format for user readability
 
 def view_songs (songs_list):
-    for i, song in enumerate(songs_list, start=1): # ~ will go thru the list of songs, starting from the n1
-        print(f"{i}. {song['name']} - {song['artist']} ({song['mood']})") # ~ and "re shape it" for a better readability for the user 
+    for i, song in enumerate(songs_list, start=1): 
+        print(f"{i}. {song['name']} - {song['artist']} ({song['mood']})")  
 
 
 
@@ -116,21 +115,21 @@ def generate_playlist(songs_list):
 # $ This function is the main lopp that will show a menu, will catch users answer and will run the rigth action based on user picks (add song, generate playlist, view songs, or exit) the loop ends only when user choose exit
 
 def main(songs_list, file_name):
-    while True:  # ~ We start a indless loop asking for a choice until the user exits
-        options = show_menu(songs_list) # ~ we save in options the type of menu that is avaible for the amount of songs that are loaded (empty = menu with 2 options, songs avaible = menu with 4 options)
-        choice_number = get_valid_number(len(options), "\n Choose an option: ") # ~ user have to chose a numb avaible from the menu (len options is in charge to show whats the limit number, either the 2 menu or the 4 menu), and we use get valid number because will let us insist in get a rigth answer till the user answer with a right number avaible
-        chosen_option = options[choice_number - 1] # ~ we turn the number that user chose to a text option from the menu (again using a - 1 for positions purposes, if user chose 1 it really meant it chose the option in position 0)
+    while True:  
+        options = show_menu(songs_list) 
+        choice_number = get_valid_number(len(options), "\n Choose an option: ") 
+        chosen_option = options[choice_number - 1] 
 
         if chosen_option == "Add song":
-            add_song(songs_list)  # ~ we call add_song, which will ask the user what song they want to add
-            save_songs(songs_list, file_name)  # ~ we call save_songs so the song the user just added gets saved in the CSV. Otherwise it will be lost as soon as the console restarts
+            add_song(songs_list)  
+            save_songs(songs_list, file_name)  
         elif chosen_option == "Generate playlist":
             generate_playlist(songs_list)
         elif chosen_option == "View songs":
             view_songs(songs_list)
         elif chosen_option == "Exit":
             print("Goodbye! 🎵")
-            break  # ~ this is what actually stops the while True loop
+            break  
 
 
 
